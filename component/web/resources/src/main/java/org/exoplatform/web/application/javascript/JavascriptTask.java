@@ -18,6 +18,8 @@
  */
 package org.exoplatform.web.application.javascript;
 
+import org.gatein.portal.controller.resource.ResourceId;
+import org.gatein.portal.controller.resource.ResourceScope;
 import org.gatein.portal.controller.resource.script.ScriptResource;
 
 import java.util.ArrayList;
@@ -48,6 +50,11 @@ public class JavascriptTask
          ScriptResource resource = service.scripts.addResource(desc.id, desc.fetchMode, desc.alias);
          if (resource != null)
          {
+            ResourceId id = resource.getId();
+            if (!(ResourceScope.SHARED.equals(id.getScope()) && JavascriptConfigParser.LEGACY_JAVA_SCRIPT.equals(id.getName())))
+            {
+               resource.setContextPath(scontext.getContextPath());               
+            }
             for (Javascript module : desc.modules)
             {
                module.addModuleTo(resource);

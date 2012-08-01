@@ -23,8 +23,8 @@ import org.exoplatform.portal.resource.compressor.ResourceCompressor;
 import org.exoplatform.web.application.javascript.JavascriptConfigService;
 import org.gatein.wci.WebApp;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * An abstract class for resource services in Portal like {@link SkinService}
@@ -49,7 +49,7 @@ public abstract class AbstractResourceService
    {
       this.compressor = compressor;
       this.mainResolver = new MainResourceResolver();
-      this.contexts = new HashMap<String, WebApp>();
+      this.contexts = new ConcurrentHashMap<String, WebApp>();
    }
 
    /**

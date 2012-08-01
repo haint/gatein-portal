@@ -141,10 +141,18 @@ public class JavascriptConfigService extends AbstractResourceService implements 
          boolean isModule = FetchMode.ON_LOAD.equals(resource.getFetchMode());
          if (isModule)
          {
+            List<ResourceId> deps = new LinkedList<ResourceId>();
+            for (ResourceId id : resource.getDependencies()) 
+            {
+               if (getResource(id) != null)
+               {
+                  deps.add(id);
+               }
+            }
             buffer.append("define('").append(resourceId).append("', ");
-            buffer.append(new JSONArray(resource.getDependencies()));            
+            buffer.append(new JSONArray(deps));            
             buffer.append(", function(");
-            for (ResourceId resId : resource.getDependencies()) 
+            for (ResourceId resId : deps) 
             {               
                String alias = resource.getDependencyAlias(resId);
                ScriptResource dep = getResource(resId);
@@ -282,7 +290,7 @@ public class JavascriptConfigService extends AbstractResourceService implements 
       return config;
    }
    
-   private List<ScriptResource> getAllResources()
+   public List<ScriptResource> getAllResources()
    {
       List<ScriptResource> resources = new LinkedList<ScriptResource>();
       for (ResourceScope scope : ResourceScope.values())
@@ -348,6 +356,11 @@ public class JavascriptConfigService extends AbstractResourceService implements 
       return false;
    }
 
+   public List<WebApp> getContexts()
+   {
+      return new LinkedList<WebApp>(contexts.values());
+   }
+   
    /**
     * Start service.
     * Registry org.exoplatform.web.application.javascript.JavascriptDeployer,

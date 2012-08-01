@@ -52,6 +52,9 @@ public class ScriptResource extends Resource<ScriptResource> implements Comparab
    
    /** . */
    private final List<Module> modules;
+   
+   /** . */
+   private String contextPath;
 
    /** . */
    private final Map<QualifiedName, String> parameters;
@@ -126,6 +129,16 @@ public class ScriptResource extends Resource<ScriptResource> implements Comparab
    public FetchMode getFetchMode()
    {
       return fetchMode;
+   }
+
+   public String getContextPath()
+   {
+      return contextPath;
+   }
+
+   public void setContextPath(String contextPath)
+   {
+      this.contextPath = contextPath;
    }
 
    public Map<QualifiedName, String> getParameters(boolean minified, Locale locale)

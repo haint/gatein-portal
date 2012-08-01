@@ -24,12 +24,19 @@ import org.exoplatform.container.PortalContainer;
 import org.exoplatform.container.RootContainer.PortalContainerPostInitTask;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
+import org.gatein.portal.controller.resource.ResourceId;
+import org.gatein.portal.controller.resource.ResourceScope;
+import org.gatein.portal.controller.resource.script.Module;
+import org.gatein.portal.controller.resource.script.ScriptResource;
 import org.gatein.wci.WebApp;
 import org.gatein.wci.WebAppEvent;
 import org.gatein.wci.WebAppLifeCycleEvent;
 import org.gatein.wci.WebAppListener;
 
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -82,17 +89,28 @@ public class JavascriptConfigDeployer implements WebAppListener
       }
    }
    
+   public static boolean isResourceWebApp(WebApp webApp)
+   {
+      URL url = null;
+      try
+      {
+         url = webApp.getServletContext().getResource(GATEIN_CONFIG_RESOURCE);
+      }
+      catch (MalformedURLException e)
+      {
+         LOG.error(e.getMessage(), e);
+      }
+      return url != null;
+   }
+   
    private void add(final WebApp webApp)
    {
       try
       {
-         InputStream is = webApp.getServletContext().getResourceAsStream(GATEIN_CONFIG_RESOURCE);
-         if (is == null)
+         if (!isResourceWebApp(webApp))
          {
             return;
-         }
-         
-         Safe.close(is);
+         }                
 
          final PortalContainerPostInitTask task = new PortalContainerPostInitTask()
          {
@@ -114,7 +132,17 @@ public class JavascriptConfigDeployer implements WebAppListener
    
    private void remove(WebApp webApp)
    {
-      javascriptService.unregisterServletContext(webApp);
+      if (javascriptService.getContexts().contains(webApp))
+      {
+         javascriptService.unregisterServletContext(webApp);      
+         for (ScriptResource rs : javascriptService.getAllResources())
+         {
+            if (webApp.getContextPath().equals(rs.getContextPath()))
+            {
+               javascriptService.scripts.removeResource(rs.getId());
+            }
+         }
+      }
    }
 
    private void register(ServletContext scontext, PortalContainer container)

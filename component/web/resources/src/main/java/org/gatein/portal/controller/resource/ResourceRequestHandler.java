@@ -19,6 +19,18 @@
 
 package org.gatein.portal.controller.resource;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.exoplatform.commons.cache.future.FutureMap;
 import org.exoplatform.commons.utils.I18N;
 import org.exoplatform.commons.utils.PropertyManager;
@@ -26,25 +38,21 @@ import org.exoplatform.commons.utils.Safe;
 import org.exoplatform.portal.application.ResourceRequestFilter;
 import org.exoplatform.web.ControllerContext;
 import org.exoplatform.web.WebRequestHandler;
+import org.exoplatform.web.application.javascript.JavascriptConfigDeployer;
 import org.exoplatform.web.controller.QualifiedName;
 import org.gatein.common.io.IOTools;
-
 import org.gatein.common.logging.Logger;
 import org.gatein.common.logging.LoggerFactory;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Locale;
-import java.util.Properties;
+import org.gatein.wci.WebApp;
+import org.gatein.wci.WebAppEvent;
+import org.gatein.wci.WebAppLifeCycleEvent;
+import org.gatein.wci.WebAppListener;
+import org.gatein.wci.impl.DefaultServletContainerFactory;
 
 /**
  * @author <a href="mailto:julien.viet@exoplatform.com">Julien Viet</a>
  */
-public class ResourceRequestHandler extends WebRequestHandler
+public class ResourceRequestHandler extends WebRequestHandler implements WebAppListener
 {
 
    public static final String IF_MODIFIED_SINCE     = "If-Modified-Since";
@@ -61,6 +69,8 @@ public class ResourceRequestHandler extends WebRequestHandler
    public static final String VERSION;
    
    private static final long MAX_AGE;
+   
+   private List<WebApp> resourceWebApp = new CopyOnWriteArrayList<WebApp>();
 
    static
    {
@@ -143,6 +153,7 @@ public class ResourceRequestHandler extends WebRequestHandler
    public ResourceRequestHandler()
    {
       this.cache = new FutureMap<ScriptKey, ScriptResult, ControllerContext>(new ScriptLoader());
+      DefaultServletContainerFactory.getInstance().getServletContainer().addWebAppListener(this);
    }
 
    @Override
@@ -264,5 +275,32 @@ public class ResourceRequestHandler extends WebRequestHandler
    protected boolean getRequiresLifeCycle()
    {   
       return false;
+   }
+
+   @Override
+   public void onEvent(WebAppEvent event)
+   {
+      if (event instanceof WebAppLifeCycleEvent)
+      {
+         WebAppLifeCycleEvent lifeCycleEvent = (WebAppLifeCycleEvent)event;
+         WebApp webApp = event.getWebApp();
+         
+         switch (lifeCycleEvent.getType())
+         {
+            case WebAppLifeCycleEvent.ADDED:
+               if (JavascriptConfigDeployer.isResourceWebApp(webApp))
+               {
+                  resourceWebApp.add(webApp);
+               }
+               break;
+            case WebAppLifeCycleEvent.REMOVED:
+               if (resourceWebApp.contains(webApp))
+               {                      
+                  resourceWebApp.remove(webApp);
+                  cache.clear();
+               }
+               break;
+         }
+      }
    }
 }

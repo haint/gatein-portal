@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author <a href="mailto:julien.viet@exoplatform.com">Julien Viet</a>
@@ -45,7 +46,7 @@ public class ScriptGraph
       EnumMap<ResourceScope, Map<String, ScriptResource>> resources = new EnumMap<ResourceScope, Map<String, ScriptResource>>(ResourceScope.class);
       for (ResourceScope scope : ResourceScope.values())
       {
-         resources.put(scope, new HashMap<String, ScriptResource>());
+         resources.put(scope, new ConcurrentHashMap<String, ScriptResource>());
       }
       
       //
