@@ -77,10 +77,11 @@ public class GateInResourcesRewriter implements GadgetRewriter
 
    public void rewrite(Gadget gadget, MutableContent content) throws RewritingException
    {
+      System.out.println("GateIn resource rewriter: " + gadget.getContext().getContainer());
       if (gadget.getAllFeatures().contains(GATEIN_RESOURCES_FEATURE))
       {
          Feature grFeature = gadget.getSpec().getModulePrefs().getFeatures().get(GATEIN_RESOURCES_FEATURE);
-         JSONObject reqConfig = getJSConfig();
+         JSONObject reqConfig = getJSConfig("/" + gadget.getContext().getContainer());
          
          Document doc = content.getDocument();
          Element head = (Element)DomUtil.getFirstNamedChildNode(doc.getDocumentElement(), "head");
@@ -116,7 +117,7 @@ public class GateInResourcesRewriter implements GadgetRewriter
       }
    }
 
-   private JSONObject getJSConfig() throws RewritingException
+   private JSONObject getJSConfig(String portalContextPath) throws RewritingException
    {
       PortalContainer pcontainer = PortalContainer.getInstance();
       WebAppController webAppController =
@@ -125,7 +126,7 @@ public class GateInResourcesRewriter implements GadgetRewriter
       Locale en = new Locale("en");
       try
       {
-         return service.getJSConfig(context, en);
+         return service.getJSConfig(context, en, portalContextPath);
       }
       catch (Exception e)
       {

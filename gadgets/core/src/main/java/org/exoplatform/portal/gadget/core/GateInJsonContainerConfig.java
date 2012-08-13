@@ -20,7 +20,6 @@
 
 package org.exoplatform.portal.gadget.core;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shindig.common.JsonSerializer;
 import org.apache.shindig.common.util.ResourceLoader;
@@ -43,7 +42,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -328,7 +326,7 @@ public class GateInJsonContainerConfig extends AbstractContainerConfig {
     try {
       JSONObject contents = new JSONObject(json);
       JSONArray containers = contents.getJSONArray(CONTAINER_KEY);
-
+      
       for (int i = 0, j = containers.length(); i < j; ++i) {
         // Copy the default object and produce a new one.
         String container = containers.getString(i);
@@ -404,5 +402,9 @@ public class GateInJsonContainerConfig extends AbstractContainerConfig {
     } else {
       return value;
     }
+  }
+  
+  public void addContainer(String container, Map<String, Object> properties) {
+     config.put(container, properties);
   }
 }

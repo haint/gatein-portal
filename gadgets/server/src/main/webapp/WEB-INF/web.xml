@@ -45,6 +45,11 @@
   </context-param>
 
   <filter>
+    <filter-name>containerFilter</filter-name>
+    <filter-class>org.exoplatform.portal.gadget.core.ContainerFilter</filter-class>
+  </filter>
+  
+  <filter>
     <filter-name>authFilter</filter-name>
     <filter-class>org.apache.shindig.auth.AuthenticationServletFilter</filter-class>
   </filter>
@@ -58,6 +63,11 @@
     <filter-name>hostFilter</filter-name>
     <filter-class>org.apache.shindig.common.servlet.HostFilter</filter-class>
   </filter>
+  
+  <filter-mapping>
+    <filter-name>containerFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
   <filter-mapping>
     <filter-name>hostFilter</filter-name>

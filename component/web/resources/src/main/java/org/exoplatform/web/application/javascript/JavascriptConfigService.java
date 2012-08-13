@@ -200,12 +200,22 @@ public class JavascriptConfigService extends AbstractResourceService implements 
          return null;         
       }
    }
-   
+
    public Map<String, FetchMode> resolveURLs(
       ControllerContext controllerContext,
       Map<ResourceId, FetchMode> ids,
       boolean minified,
       Locale locale) throws IOException
+   {
+      return resolveURLs(controllerContext, ids, minified, locale, PortalContainer.getInstance().getPortalContext().getContextPath());
+   }
+
+   public Map<String, FetchMode> resolveURLs(
+      ControllerContext controllerContext,
+      Map<ResourceId, FetchMode> ids,
+      boolean minified,
+      Locale locale,
+      String contextPath) throws IOException
    {
       Map<String, FetchMode> urls = new LinkedHashMap<String, FetchMode>();
       StringBuilder buffer = new StringBuilder();
@@ -228,7 +238,6 @@ public class JavascriptConfigService extends AbstractResourceService implements 
             else
             {
                // Append portal context path
-               String contextPath = PortalContainer.getInstance().getPortalContext().getContextPath();
                writer.append(contextPath);
                controllerContext.renderURL(resource.getParameters(minified, locale), writer);
                urls.put(buffer.toString(), mode);
@@ -249,6 +258,11 @@ public class JavascriptConfigService extends AbstractResourceService implements 
    
    public JSONObject getJSConfig(ControllerContext controllerContext, Locale locale) throws Exception 
    {
+      return getJSConfig(controllerContext, locale, PortalContainer.getInstance().getPortalContext().getContextPath());
+   }
+
+   public JSONObject getJSConfig(ControllerContext controllerContext, Locale locale, String portalContainer) throws Exception 
+   {
       JSONObject paths = new JSONObject();
       JSONObject shim = new JSONObject();      
             
@@ -259,7 +273,7 @@ public class JavascriptConfigService extends AbstractResourceService implements 
          {
             HashMap<ResourceId, FetchMode> ids = new HashMap<ResourceId, FetchMode>();
             ids.put(resource.getId(), null);                     
-            Map<String, FetchMode> urlMap = resolveURLs(controllerContext, ids, !PropertyManager.isDevelopping(), locale);         
+            Map<String, FetchMode> urlMap = resolveURLs(controllerContext, ids, !PropertyManager.isDevelopping(), locale, portalContainer);         
             
             String url = urlMap.keySet().iterator().next();            
             paths.put(name, url.substring(0, url.length() - ".js".length()));            
