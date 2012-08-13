@@ -21,6 +21,7 @@ package org.exoplatform.portal.gadget.core;
 import com.google.inject.Injector;
 
 import org.apache.shindig.common.servlet.GuiceServletContextListener;
+import org.apache.shindig.config.ContainerConfig;
 
 import java.io.IOException;
 import java.util.Map;
@@ -66,7 +67,7 @@ public class ContainerFilter implements Filter
          {
             //TODO should define how/where to load configuration of this container
             //Temporarily we use configuration of "default" container to set for this container
-            Map<String, Object> props = config.getProperties("default");
+            Map<String, Object> props = config.getProperties(ContainerConfig.DEFAULT_CONTAINER);
             if (props != null)
             {
                config.addContainer(container, props);

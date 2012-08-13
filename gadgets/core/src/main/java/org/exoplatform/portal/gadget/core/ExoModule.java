@@ -24,6 +24,7 @@ import com.google.inject.multibindings.Multibinder;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
+import org.apache.shindig.auth.SecurityTokenCodec;
 import org.apache.shindig.config.ContainerConfig;
 import org.apache.shindig.gadgets.http.HttpFetcher;
 import org.apache.shindig.protocol.conversion.BeanAtomConverter;
@@ -46,6 +47,7 @@ public class ExoModule extends AbstractModule
    protected void configure()
    {
       bind(ContainerConfig.class).to(ExoContainerConfig.class);
+      bind(SecurityTokenCodec.class).to(GateInSecurityTokenCodec.class);
       bind(HttpFetcher.class).to(ExoHttpFetcher.class);
       
       bind(BeanConverter.class).annotatedWith(Names.named("shindig.bean.converter.xml")).to(BeanXmlConverter.class);
