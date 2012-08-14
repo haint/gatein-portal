@@ -798,7 +798,7 @@ gadgets.IfrGadget.prototype.setNoCache = function(value) {
  * @constructor
  */
 gadgets.Container = function() {
-	this.name_ = "default";
+  this.name_ = "default";
   this.gadgets_ = {};
   this.parentUrl_ = document.location.href + '://' + document.location.host;
   this.country_ = 'ALL';

@@ -28,23 +28,25 @@ var eXoGadget = {
    * @param {boolean} debug normal or debug mode (0, 1)
    * @param {String} nocache value indicate cache or nocache at shindig level (0, 1)
    */
-  createGadget : function(url, id, metadata, userPref, view, hostName, debug, nocache, container)
+  createGadget : function(url, id, metadata, userPref, view, hostName, debug, nocache)
   {
     window.gadgets = window.gadgets || {};
     eXo.gadgets = window.gadgets;
     gadgets.pubsubURL = hostName + '/js/gatein-container.js?c=1' + (debug ? "&debug=1": "") + (nocache ? "&nocache=1" : "&nocache=0");  
     var args = arguments;
-	  require([gadgets.pubsubURL], function() {
-			//Make sure that 2 modules in shindig-patch has been loaded already
-			require(["eXo.gadget.Gadgets", "eXo.gadget.ExoBasedUserPrefStore"], function() {_module.UIGadget.createCallback.apply(window, args)});
-	  });
+  	require([gadgets.pubsubURL], 
+  		function() {
+  			//Make sure that 2 modules of gadget container have been loaded already
+  			require(["eXo.gadget.Gadgets", "eXo.gadget.ExoBasedUserPrefStore"], function() {
+  			    gadgets.container.setName(eXo.env.portal.containerName);
+  			    gadgets.container.setLanguage(eXo.core.I18n.getLanguage());  			    
+  				_module.UIGadget.createCallback.apply(window, args)
+  			});
+  	});
   },
 
-  createCallback : function(url, id, metadata, userPref, view, hostName, debug, nocache, container)
+  createCallback : function(url, id, metadata, userPref, view, hostName, debug, nocache)
   {
-    var language = eXo.core.I18n.getLanguage();
-    gadgets.container.setName(container);
-    gadgets.container.setLanguage(language);
     var gadget;
     if (metadata != null)
     {
