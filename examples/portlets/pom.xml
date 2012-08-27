@@ -21,6 +21,7 @@
       <module>simplesthelloworld</module>
       <module>struts-jpetstore</module>
       <module>resourceserving</module>
+      <module>amd-js</module>
    </modules>
 
 </project>
