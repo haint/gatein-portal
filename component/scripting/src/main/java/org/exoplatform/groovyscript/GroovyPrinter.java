@@ -125,7 +125,7 @@ abstract class GroovyPrinter extends GroovyObjectSupport implements GroovyInterc
       Object f = format(o);
       if (f == null)
       {
-         return "null";
+         return "";
       }
       else if (f instanceof String)
       {
@@ -152,6 +152,10 @@ abstract class GroovyPrinter extends GroovyObjectSupport implements GroovyInterc
             for (int i = 0;i < values.length;i++)
             {
                values[i] = format(values[i]);
+               if (values[i] == null)
+               {
+                  values[i] = "";
+               }
             }
             write(o.toString());
          }

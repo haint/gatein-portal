@@ -234,6 +234,15 @@ public class TestTemplateRendering extends AbstractGateInTest
       assertEquals("\"", s);
    }
 
+   public void testNullVariable() throws Exception
+   {
+      GroovyTemplate template = new GroovyTemplate("<% out.print(\"${foo}\") %>");
+      Map<String, String> context = new HashMap<String, String>();
+      context.put("foo", null);
+      String s = template.render(context);
+      assertEquals("", s);
+   }
+   
    public void testFooFoo() throws Exception
    {
       InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("UIPortalApplication.gtmpl");
