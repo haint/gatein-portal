@@ -47,7 +47,9 @@ public class StandaloneAppURLContext implements URLContext
    /** . */
    private StringBuilder buffer;
 
-   public StandaloneAppURLContext(ControllerContext controllerContext)
+   private HttpServletRequest req;
+
+   public StandaloneAppURLContext(ControllerContext controllerContext, HttpServletRequest request)
    {
       if (controllerContext == null)
       {
@@ -56,6 +58,7 @@ public class StandaloneAppURLContext implements URLContext
 
       //
       this.controllerContext = controllerContext;
+      this.req = request;
    }
 
    public <R, U extends PortalURL<R, U>> String render(U url)
@@ -89,7 +92,6 @@ public class StandaloneAppURLContext implements URLContext
       }
 
       //
-      HttpServletRequest req = controllerContext.getRequest();
       if (url.getSchemeUse())
       {
          buffer.append(req.getScheme());

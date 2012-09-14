@@ -23,6 +23,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.exoplatform.container.ExoContainerContext;
 import org.exoplatform.container.xml.InitParams;
 import org.exoplatform.container.xml.ValueParam;
 import org.exoplatform.portal.mop.SiteType;
@@ -60,19 +61,17 @@ public class StandaloneAppRequestHandler extends PortalRequestHandler
    }
    
    @Override
-   public boolean execute(ControllerContext controllerContext) throws Exception
+   public boolean execute(ControllerContext controllerContext, HttpServletRequest request, HttpServletResponse response) throws Exception
    {
-      HttpServletRequest req = controllerContext.getRequest();
-      HttpServletResponse res = controllerContext.getResponse();
-
-      log.debug("Session ID = " + req.getSession().getId());
-      res.setHeader("Cache-Control", "no-cache");
+      log.debug("Session ID = " + request.getSession().getId());
+      response.setHeader("Cache-Control", "no-cache");
 
       //
       String requestPath = controllerContext.getParameter(REQUEST_PATH);
 
-      StandaloneApplication app = controllerContext.getController().getApplication(StandaloneApplication.STANDALONE_APPLICATION_ID);
-      StandaloneAppRequestContext context = new StandaloneAppRequestContext(app, controllerContext, requestPath);      
+      WebAppController controller = (WebAppController) ExoContainerContext.getCurrentContainer().getComponentInstanceOfType(WebAppController.class);
+      StandaloneApplication app = controller.getApplication(StandaloneApplication.STANDALONE_APPLICATION_ID);
+      StandaloneAppRequestContext context = new StandaloneAppRequestContext(app, controllerContext, request, response, requestPath);      
       processRequest(context, app);
       return true;
    }     

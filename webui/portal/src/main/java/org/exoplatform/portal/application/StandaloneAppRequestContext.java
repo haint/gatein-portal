@@ -21,6 +21,9 @@ package org.exoplatform.portal.application;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.exoplatform.portal.mop.SiteType;
 import org.exoplatform.portal.url.StandaloneAppURLContext;
 import org.exoplatform.portal.webui.application.UIStandaloneAppContainer;
@@ -34,16 +37,16 @@ import org.exoplatform.webui.core.UIApplication;
 
 public class StandaloneAppRequestContext extends PortalRequestContext
 {
-   public StandaloneAppRequestContext(StandaloneApplication app, ControllerContext controllerContext, String requestPath)
-            throws Exception
+   public StandaloneAppRequestContext(StandaloneApplication app, ControllerContext controllerContext,
+      HttpServletRequest request, HttpServletResponse response, String requestPath) throws Exception
    {
-      super(app, controllerContext, SiteType.USER.name(), controllerContext.getRequest().getRemoteUser(), requestPath, null);    
+      super(app, controllerContext, request, response, SiteType.USER.name(), request.getRemoteUser(), requestPath, null);    
    }
 
    @Override
    public <R, U extends PortalURL<R, U>> U newURL(ResourceType<R, U> resourceType, URLFactory urlFactory)
    {
-      StandaloneAppURLContext context = new StandaloneAppURLContext(getControllerContext());
+      StandaloneAppURLContext context = new StandaloneAppURLContext(getControllerContext(), request_);
       U url = urlFactory.newURL(resourceType, context);
       if (url != null)
       {
