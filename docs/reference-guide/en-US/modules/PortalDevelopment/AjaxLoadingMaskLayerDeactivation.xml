@@ -22,7 +22,7 @@
 		<itemizedlist>
 			<listitem>
 				<para>
-					The <literal>doAsync()</literal> method automatically adds the following new parameter to the parameters list: <literal>asyncparam = new Parameter(AJAX ASYNC,&#34;true&#34;); (AJAX ASYNC == &#34;ajax async&#34;)</literal>.
+					The <literal>doAsync()</literal> method automatically adds the following new parameter to the parameters list: <literal>asyncparam = new Parameter(AJAX&#95;ASYNC,&#34;true&#34;); (AJAX&#95;ASYNC == &#34;ajax&#95;async&#34;)</literal>.
 				</para>
 			</listitem>
 			<listitem>

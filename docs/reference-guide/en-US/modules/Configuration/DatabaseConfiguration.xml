@@ -67,7 +67,7 @@ gatein.jcr.datasource.password=
 		create a database "mygateindb_portal" (remember that _portal is required),
 		and assign our user the rights to create tables.</para>
 		<para>Then we need to add MySQL's JDBC driver to the classpath, and
-		finally edit <filename>gatein.ear/02portal.war/WEB-INF/conf/jcr/jcr-configuration</filename>
+		finally edit <filename>gatein.ear/portal.war/WEB-INF/conf/jcr/jcr-configuration</filename>
 		to contain the following:
 		</para>
 <programlisting>gatein.jcr.datasource.driver=com.mysql.jdbc.Driver

@@ -7,7 +7,7 @@
 	<title>Portal Default Permission Configuration</title>
 		<para xml:id="sect-Reference_Guide-Portal_Default_Permission_Configuration-Overview">
 			The default permission configuration for the portal is defined through the <literal>org.exoplatform.portal.config.UserACL</literal>
-         component configuration in the <filename>02portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename> file.
+         component configuration in the <filename>portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename> file.
 		</para>
 		<para>
 			It defines 8 permissions types:

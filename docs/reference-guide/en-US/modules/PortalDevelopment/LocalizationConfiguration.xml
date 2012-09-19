@@ -57,7 +57,7 @@
             otherwise it will fallback to portal-default <literal>Locale</literal>.
          </para>
 
-         <para>The supported locales are listed in <filename>gatein.ear/02portal.war/WEB-INF/conf/common/locales-config.xml</filename> file
+         <para>The supported locales are listed in <filename>gatein.ear/portal.war/WEB-INF/conf/common/locales-config.xml</filename> file
             as described in <xref linkend="sect-Reference_Guide-Internationalization_Configuration-Locales_configuration"/>.
          </para>
 
@@ -185,7 +185,7 @@
          <title>LocalePolicy Configuration</title>
 
          <para>The <literal>LocalePolicy</literal> framework is enabled for portlets by configuring the <classname>LocalizationLifecycle</classname> class in portal's webui configuration file:
-         <filename>gatein.ear/02portal.war/WEB-INF/webui-configuration.xml</filename>.</para>
+         <filename>gatein.ear/portal.war/WEB-INF/webui-configuration.xml</filename>.</para>
 
  <programlisting role="XML"><![CDATA[    
 <application-lifecycle-listeners>
@@ -195,7 +195,7 @@
  </programlisting>
 
          <para>The default <literal>LocalePolicy</literal> implementation is installed as GateIn Kernel portal service via
-            <filename>gatein.ear/02portal.war/WEB-INF/conf/portal/web-configuration.xml</filename>. Here you can change it to a different
+            <filename>gatein.ear/portal.war/WEB-INF/conf/portal/web-configuration.xml</filename>. Here you can change it to a different
             value according to your needs.
          </para>
          <para>The following fragment is responsible for installing the service:
@@ -233,7 +233,7 @@
             <literal>PortletRequest.getLocale()</literal>. That way even localization of servlets, and .jsps
             accessed in a non-bridged manner can stay in synchronization with the portlet localization.
          </para>
-         <para><literal>LocalizationFilter</literal> is installed through the <filename>gatein.ear/02portal.war/WEB-INF/web.xml</filename> file of the portal.
+         <para><literal>LocalizationFilter</literal> is installed through the <filename>gatein.ear/portal.war/WEB-INF/web.xml</filename> file of the portal.
          </para>
 <programlisting role="XML"><![CDATA[   
 <filter>

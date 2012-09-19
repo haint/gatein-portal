@@ -45,10 +45,10 @@
       </para>
 	  <itemizedlist>
 		<listitem>
-			<para>For Tomcat: <filename>TOMCAT_HOME/gatein/conf/portlet.xml</filename></para>
+			<para>For Tomcat: <filename>$TOMCAT_HOME/gatein/conf/portlet.xml</filename></para>
 		</listitem>
 		<listitem>
-			<para>For JBoss: <filename>JBOSS_HOME/server/default/conf/gatein/portlet.xml</filename></para>
+			<para>For JBoss: <filename>$JBOSS_HOME/server/default/conf/gatein/portlet.xml</filename></para>
 		</listitem>
 	  </itemizedlist>
 	</section>

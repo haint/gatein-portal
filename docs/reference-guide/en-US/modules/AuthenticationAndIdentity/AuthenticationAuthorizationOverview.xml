@@ -45,7 +45,7 @@
             containers and <ulink type="http" url="http://www.jcp.org/en/jsr/detail?id=315">Servlet 3.0</ulink> containers.
         </para>
         <para>
-            First you can see in <emphasis role="bold">deploy/gatein.ear/02portal.war/WEB-INF/web.xml</emphasis> that authentication is triggered by accessing some of secured URL:
+            First you can see in <emphasis role="bold">deploy/gatein.ear/portal.war/WEB-INF/web.xml</emphasis> that authentication is triggered by accessing some of secured URL:
         </para>
         <programlisting role="XML"><![CDATA[
 <security-constraint>
@@ -85,7 +85,7 @@
 ]]>
         </programlisting>
         <para>
-            <literal>InitiateLoginServlet</literal> simply redirects user to login page placed in <filename>deploy/gatein.ear/02portal.war/login/jsp/login.jsp</filename>.
+            <literal>InitiateLoginServlet</literal> simply redirects user to login page placed in <filename>deploy/gatein.ear/portal.war/login/jsp/login.jsp</filename>.
             <mediaobject>
                 <imageobject role="html">
                     <imagedata fileref="images/AuthenticationAndIdentity/Overview/loginScreen.png" format="PNG" align="center"/>
@@ -484,7 +484,7 @@ public interface Authenticator
             <title>RemindPasswordTokenService</title>
             <para>
                This is a special service used during the RememberMe authentication workflow.
-               It is configurable in the <filename>deploy/gatein.ear/02portal.war/WEB-INF/conf/common/remindpwd-configuration.xml</filename> file.
+               It is configurable in the <filename>deploy/gatein.ear/portal.war/WEB-INF/conf/common/remindpwd-configuration.xml</filename> file.
                See <xref linkend="sect-Reference_Guide-Authentication_Token_Configuration" /> for more details.
             </para>
             <para>
@@ -496,7 +496,7 @@ public interface Authenticator
          <title>BASIC authentication</title>
          <para>
             &PRODUCT; is using FORM based authentication by default but it is not a problem with switch to different authentication type like BASIC.
-            Only needed thing is to configure it properly in <filename>deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename> like this:
+            Only needed thing is to configure it properly in <filename>deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename> like this:
          </para>
          <programlisting role="XML"><![CDATA[
 <!--
@@ -650,7 +650,7 @@ public interface Authenticator
             <listitem>
                <para>            
                   The HTTP request is processed through <literal>SetCurrentIdentityFilter</literal>, which is declared in
-                  <filename>deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename>.
+                  <filename>deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename>.
                </para>
             </listitem>
             <listitem>

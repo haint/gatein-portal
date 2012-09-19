@@ -22,7 +22,7 @@
 	<section id="sect-Reference_Guide-Default_Portal_Configuration-Configuration">
 		<title>Configuration</title>
 		<para>
-			The following example configuration can be found at: &#34;<filename>02portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename>&#34;.
+			The following example configuration can be found at: &#34;<filename>portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename>&#34;.
 		</para>
 		
 <programlisting role="XML">&#60;component&#62;

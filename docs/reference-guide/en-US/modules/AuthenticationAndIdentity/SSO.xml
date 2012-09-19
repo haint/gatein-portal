@@ -608,7 +608,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Replace the entire content of <filename>gatein.ear/02portal.war/login/jsp/login.jsp</filename> with:
+                            Replace the entire content of <filename>gatein.ear/portal.war/login/jsp/login.jsp</filename> with:
                         </para>
 <programlisting role="XML">&#60;html&#62;
   &#60;head&#62;
@@ -623,7 +623,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Add the following filters at the top of the filter chain in <filename>gatein.ear/02portal.war/WEB-INF/web.xml</filename>.</para>
+                            Add the following filters at the top of the filter chain in <filename>gatein.ear/portal.war/WEB-INF/web.xml</filename>.</para>
 
 <programlisting role="XML"><![CDATA[<filter>
 	<filter-name>LoginRedirectFilter</filter-name>
@@ -792,7 +792,7 @@ realmName=gatein-domain;
                 </step>
             <step>
                <para>
-                  Copy the <filename>GATEIN_SSO_HOME/josso/josso-18X/gatein.ear/portal.war/WEB-INF/classes/josso-agent-config.xml</filename> file into <filename>gatein.ear/02portal.war/WEB-INF/classes</filename> (or into <filename>GATEIN_HOME/webapps/portal.war/WEB-INF/classes</filename>, or <filename>GATEIN_HOME/conf</filename> if &PRODUCT; is  running in Tomcat).
+                  Copy the <filename>GATEIN_SSO_HOME/josso/josso-18X/gatein.ear/portal.war/WEB-INF/classes/josso-agent-config.xml</filename> file into <filename>gatein.ear/portal.war/WEB-INF/classes</filename> (or into <filename>GATEIN_HOME/webapps/portal.war/WEB-INF/classes</filename>, or <filename>GATEIN_HOME/conf</filename> if &PRODUCT; is  running in Tomcat).
                </para>
             </step>
                 <step>
@@ -898,7 +898,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Replace the entire content of <filename>gatein.ear/02portal.war/login/jsp/login.jsp</filename> with:
+                            Replace the entire content of <filename>gatein.ear/portal.war/login/jsp/login.jsp</filename> with:
                         </para>
 <programlisting>&#60;html&#62;
   &#60;head&#62;
@@ -913,7 +913,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Add the following filters at the top of the filter chain in <filename>gatein.ear/02portal.war/WEB-INF/web.xml</filename>.
+                            Add the following filters at the top of the filter chain in <filename>gatein.ear/portal.war/WEB-INF/web.xml</filename>.
 						</para>
 
 <programlisting role="XML"><![CDATA[<filter>
@@ -1234,7 +1234,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Replace the entire content of <filename>gatein.ear/02portal.war/login/jsp/login.jsp</filename> with:
+                            Replace the entire content of <filename>gatein.ear/portal.war/login/jsp/login.jsp</filename> with:
                         </para>
 <programlisting role="HTML">&#60;html&#62;
   &#60;head&#62;
@@ -1249,7 +1249,7 @@ realmName=gatein-domain;
                     </listitem>
                     <listitem>
                         <para>
-                            Add the following filters at the top of the filter chain in <filename>gatein.ear/02portal.war/WEB-INF/web.xml</filename>.</para>
+                            Add the following filters at the top of the filter chain in <filename>gatein.ear/portal.war/WEB-INF/web.xml</filename>.</para>
 <programlisting role="XML"><![CDATA[<filter>
    <filter-name>LoginRedirectFilter</filter-name>
    <filter-class>org.gatein.sso.agent.filter.LoginRedirectFilter</filter-class>
@@ -1345,7 +1345,7 @@ realmName=gatein-domain;
                       is that OpenSSO will be deployed on Tomcat server on <emphasis role="bold">opensso.mydomain.com:8888</emphasis>
                       and &PRODUCT; will be deployed on <emphasis role="bold">portal.yourdomain.com:8080</emphasis>. Configuration of
                       <emphasis role="bold">LoginRedirectFilter</emphasis> on &PRODUCT; side in the 
-                      <emphasis role="bold">gatein.ear/02portal.war/WEB-INF/web.xml</emphasis> file will be different. You will
+                      <emphasis role="bold">gatein.ear/portal.war/WEB-INF/web.xml</emphasis> file will be different. You will
                       use different class for filter and different parameters, because now you do not redirect user directly
                       to the OpenSSO console but you need to redirect him to CDCServlet. The configuration will look as follows:
                    </para>
@@ -1835,7 +1835,7 @@ network.negotiate-auth.using-native-gsslib = true
                 </step>
                 <step>
                     <para>
-                        Modify <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename> as below.</para>
+                        Modify <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename> as below.</para>
 
 <programlisting role="XML"><![CDATA[
 <!--	<login-config>
@@ -1885,7 +1885,7 @@ network.negotiate-auth.using-native-gsslib = true
         </step>
         <step>
 			<para>Integrate the request pre-processing needed for SPNEGO via filters by adding the following filters to 
-			   <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename> at the top of the Filter chain.
+			   <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename> at the top of the Filter chain.
 			</para>
 
 <programlisting role="XML"><![CDATA[<filter>
@@ -2117,14 +2117,14 @@ network.negotiate-auth.using-native-gsslib = true
 			</step>
              <step>
 				<para>
-                Copy the main configuration file for Picketlink Federation from <filename>GATEIN_SSO_HOME/saml/gatein.ear/02portal.war/WEB-INF/picketlink.xml</filename>
-                to <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/</filename>.
+                Copy the main configuration file for Picketlink Federation from <filename>GATEIN_SSO_HOME/saml/gatein.ear/portal.war/WEB-INF/picketlink.xml</filename>
+                to <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/</filename>.
 				</para>
 			</step>
              <step>
 				<para>
-                Copy example keystore file for picketlink federation from <filename>GATEIN_SSO_HOME/saml/gatein.ear/02portal.war/WEB-INF/classes/jbid_test_keystore.jks</filename>
-                to <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/classes/</filename>.
+                Copy example keystore file for picketlink federation from <filename>GATEIN_SSO_HOME/saml/gatein.ear/portal.war/WEB-INF/classes/jbid_test_keystore.jks</filename>
+                to <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/classes/</filename>.
                 This is example keystore file, which uses same keys on both &PRODUCT; and IDP side. Since it's prebundled
                 keystore, it should not be used for production environment (See <xref linkend="sect-Reference_Guide-SSO_SAML-KeystoreUpdate" /> for more details).
 				</para>
@@ -2139,7 +2139,7 @@ network.negotiate-auth.using-native-gsslib = true
              </step>
              <step>
 				<para>
-                Add and configure new Valve in <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/context.xml</filename>.
+                Add and configure new Valve in <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/context.xml</filename>.
                 Configuration of new valve should be like this:
 				</para>
 <programlisting><![CDATA[
@@ -2148,7 +2148,7 @@ network.negotiate-auth.using-native-gsslib = true
              </step>
              <step>
 				<para>
-                Add new filter and filter-mapping for this filter into <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename>.
+                Add new filter and filter-mapping for this filter into <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename>.
 				</para>
                 <para>The filter configuration should look like this:</para>
 <programlisting role="XML"><![CDATA[<filter>
@@ -2250,7 +2250,7 @@ network.negotiate-auth.using-native-gsslib = true
              <step>
 				<para>
                 Create a new keystore for &PRODUCT; (SP) and generate new pair of public/private keys. In the 
-                <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/classes</filename> directory, you can use the
+                <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/classes</filename> directory, you can use the
                 <command>keytool -genkey -alias sp-key -keyalg RSA -keystore sp-keystore.jks</command> command. You need to choose keystore password and private key password. Let's assume that your keystore password is
                 "spkeystorepass" and a private key password is "spkeypass".
 				</para>
@@ -2266,7 +2266,7 @@ network.negotiate-auth.using-native-gsslib = true
                 Import IDP certificate and public key to SP keystore. This will ensure that SP will trust public key from IDP.
                 You can use commands:</para>
 <programlisting><![CDATA[
-mv $JBOSS_HOME/server/default/deploy/idp-sig.war/WEB-INF/classes/idp.crt $JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/classes/idp.crt
+mv $JBOSS_HOME/server/default/deploy/idp-sig.war/WEB-INF/classes/idp.crt $JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/classes/idp.crt
 keytool -printcert -v -file idp.crt # Command only for debugging purposes. You can check certificate with it.
 keytool -import -trustcacerts -alias idp-cert -file idp.crt -keystore sp-keystore.jks
 rm idp.crt
@@ -2279,7 +2279,7 @@ rm idp.crt
                 you can use commands:
 				</para>
 <programlisting><![CDATA[
-mv $JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/classes/sp.crt $JBOSS_HOME/server/default/deploy/idp-sig.war/WEB-INF/classes/sp.crt
+mv $JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/classes/sp.crt $JBOSS_HOME/server/default/deploy/idp-sig.war/WEB-INF/classes/sp.crt
 keytool -printcert -v -file sp.crt # Command only for debugging purposes. You can check certificate with it.
 keytool -import -trustcacerts -alias sp-cert -file sp.crt -keystore idp-keystore.jks
 rm sp.crt
@@ -2301,7 +2301,7 @@ rm sp.crt
              </step>
              <step>
 				<para>
-                Configuration of KeyProvider in the <filename>JBOSS_HOME/server/default/deploy/gatein.ear/02portal.war/WEB-INF/picketlink.xml</filename> file may look like this:
+                Configuration of KeyProvider in the <filename>JBOSS_HOME/server/default/deploy/gatein.ear/portal.war/WEB-INF/picketlink.xml</filename> file may look like this:
 				</para>
 <programlisting><![CDATA[
 <KeyProvider ClassName="org.picketlink.identity.federation.core.impl.KeyStoreKeyManager">
@@ -2444,7 +2444,7 @@ cp -r default node3
              </step>
              <step>
 				<para>
-                In the <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/02portal.war/WEB-INF/web.xml</filename> file, you
+                In the <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/portal.war/WEB-INF/web.xml</filename> file, you
                 need to add one special listener to cleaning expired SAML tokens:
 				</para>
 <programlisting role="XML"><![CDATA[<listener>
@@ -2461,7 +2461,7 @@ cp -r default node3
              </step>
              <step>
 				<para>
-                In <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/02portal.war/WEB-INF/context.xml</filename>, you 
+                In <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/portal.war/WEB-INF/context.xml</filename>, you 
                 need to add the <literal>org.gatein.sso.saml.plugin.valve.PortalIDPWebBrowserSSOValve</literal> valve:
 				</para>
 <programlisting role="XML"><![CDATA[<Valve className="org.gatein.sso.saml.plugin.valve.PortalIDPWebBrowserSSOValve" />
@@ -2474,7 +2474,7 @@ cp -r default node3
              </step>
              <step>
 				<para>
-                The <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/02portal.war/WEB-INF/picketlink.xml</filename> file 
+                The <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/portal.war/WEB-INF/picketlink.xml</filename> file 
                 needs to be configured as Identity provider. It can look like this:
 				</para>
 <programlisting role="XML"><![CDATA[<PicketLink xmlns="urn:picketlink:identity-federation:config:2.1">
@@ -2543,7 +2543,7 @@ cp -r default node3
              <step>
 				<para>
                 You need to copy the <literal>idp-keystore.jks</literal> keystore created in previous tutorials into
-                <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/02portal.war/WEB-INF/classes/</filename>.
+                <filename>JBOSS_HOME/server/portal-idp/deploy/gatein.ear/portal.war/WEB-INF/classes/</filename>.
 				</para>
              </step>
              <step>

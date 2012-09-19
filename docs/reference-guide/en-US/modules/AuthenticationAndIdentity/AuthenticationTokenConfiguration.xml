@@ -50,7 +50,7 @@ public Credentials validateToken(String tokenKey, boolean remove) throws NullPoi
 				<area coords="8" id="area-Reference_Guide-Authentication_Token_Configuration-Configure_token_services-time" />
 				<area coords="9" id="area-Reference_Guide-Authentication_Token_Configuration-Configure_token_services-unit" />
 			</areaspec>
-<programlisting role="XML">&#60;component&#62;
+<programlisting language="xml">&#60;component&#62;
   &#60;key&#62;org.exoplatform.web.security.security.CookieTokenService&#60;/key&#62;
   &#60;type&#62;org.exoplatform.web.security.security.CookieTokenService&#60;/type&#62;
   &#60;init-params&#62;

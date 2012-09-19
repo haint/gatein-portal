@@ -118,7 +118,7 @@
         The default skin of the portal is called
         <literal>Default</literal>. To change this value, add a
         <literal>skin</literal> tag to the
-        <filename>02portal.war/WEB-INF/conf/portal/portal/classic/portal.xml</filename>
+        <filename>portal.war/WEB-INF/conf/portal/portal/classic/portal.xml</filename>
         configuration file.
       </para>
       <para>
@@ -248,7 +248,7 @@
     <para>Because of the Right-To-Left support, all CSS files need to be
       retrieved through a Servlet filter and the web application needs to be
       configured to activate this filter. This is already done for
-      01eXoResources.war web application which contains the default skin.</para>
+			<filename>eXoResources.war</filename> web application which contains the default skin.</para>
     <para>
       Any new web applications containing skinning CSS files will
       need to have the following added to their
@@ -276,7 +276,7 @@
   <section id="sect-Reference_Guide-Skin_Configuration-Default_Skin">
     <title>Default Skin</title>
     <para>
-    The default skin for &PRODUCT; is located as part of the <literal>01eXoResource.war</literal>.
+    The default skin for &PRODUCT; is located as part of the <filename>eXoResources.war</filename>.
     The main files associated with the skin are shown below:
     </para>
     
@@ -307,7 +307,7 @@ skin/Stylesheet.css</programlisting>
         <listitem>
           <para>
 		    For the default portal skin, this file contains definitions for the portal skin, the window
-		    decorations that this skin provides and defines some Javascript resources which are not
+		    decorations and defines some Javascript resources which are not
 		    related to the skin. The default portal skin does not directly define portlet skins which should be
 		    provided by the portlets themselves.
           </para>
@@ -319,7 +319,7 @@ skin/Stylesheet.css</programlisting>
           <para>
 	        For the default portal skin, <filename>web.xml</filename> of the <filename>eXoResources.war</filename> contains a lot
 	        of information which is mostly irrelevant to the portal skinning. The areas of interest
-	        in this file is <literal>resourcerequestfilter</literal> and the fact that <literal>display-name</literal> is set.
+	        in this file is <literal>ResourceRequestFilter</literal> and the fact that <literal>display-name</literal> is set.
           </para>
         </listitem>
       </varlistentry>
@@ -382,7 +382,7 @@ skin/Stylesheet.css</programlisting>
       <title>Creating a New Portal Skin</title>
       
       <para>
-        A new portal needs to be added to the portal through the skin service. The web application
+        A new portal skin needs to be added to the portal through the skin service. The web application
         which contains the skin will need to be properly configured for the skin service to discover them. This 
         means properly configuring <literal>ResourceRequestFilter</literal> and <filename>gatein-resources.xml</filename>.
       </para>
@@ -402,7 +402,7 @@ skin/Stylesheet.css</programlisting>
 &lt;/gatein-resources&gt;
       </programlisting>
       <para>The default portal skin and window styles are defined in
-    <filename>01eXoResources.war/WEB-INF/gatein-resources.xml</filename>.
+    <filename>eXoResources.war/WEB-INF/gatein-resources.xml</filename>.
     </para>
       <note>
       <para>
@@ -443,12 +443,12 @@ skin/Stylesheet.css</programlisting>
          In order for the default skin to know about the skin icon for a new portal skin, the preview screenshot
          needs to be placed in:</para>
          
-         <filename>01eXoResources.war:/skin/DefaultSkin/portal/webui/component/customization/UIChangeSkinForm/background</filename>
+         <filename>eXoResources.war:/skin/DefaultSkin/portal/webui/component/customization/UIChangeSkinForm/background</filename>
          <para>
          The CSS stylesheet for the default portal needs to have the following updated with the preview icon CSS class. For a skin named 
          <emphasis
             role="bold">MySkin</emphasis> then the following needs to be updated:</para>
-         <filename>01eXoResources.war:/skin/DefaultSkin/portal/webui/component/customization/UIChangeSkinForm/Stylesheet.css</filename>
+         <filename>eXoResources.war:/skin/DefaultSkin/portal/webui/component/customization/UIChangeSkinForm/Stylesheet.css</filename>
          <programlisting>.UIChangeSkinForm .UIItemSelector .TemplateContainer .<emphasis
             role="bold">MySkinImage</emphasis> {
   margin: auto;
@@ -496,7 +496,7 @@ skin/Stylesheet.css</programlisting>
   &lt;/style-theme&gt;
 &lt;/window-style&gt;</programlisting>
 
-    <para>The windows style configuration for the default skin is configured in: <filename>01eXoResources.war/WEB-INF/gatein-resources.xml</filename>.</para>
+    <para>The windows style configuration for the default skin is configured in: <filename>eXoResources.war/WEB-INF/gatein-resources.xml</filename>.</para>
 
     <note>
 		<para>
@@ -516,7 +516,7 @@ skin/Stylesheet.css</programlisting>
 	naming related to the window style name. The service will try and display the CSS based on this naming.
 	The CSS class must be included as part of the current portal skin for displaying the window decorators.
 	</para>
-	<para>The location of the window decorator CSS classes for the default portal theme is located at: <filename>01eXoResources.war/skin/PortletThemes/Stylesheet.css</filename>.</para>
+	<para>The location of the window decorator CSS classes for the default portal theme is located at: <filename>eXoResources.war/skin/PortletThemes/Stylesheet.css</filename>.</para>
         <para>Create the CSS file:</para>
 
     <programlisting>

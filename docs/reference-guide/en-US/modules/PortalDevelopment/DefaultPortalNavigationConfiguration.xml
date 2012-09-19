@@ -26,7 +26,7 @@
 			</listitem>
 		</itemizedlist>
 		<para>
-			These navigations are configured using the standard XML syntax in the <filename>02portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename> file.
+			These navigations are configured using the standard XML syntax in the <filename>portal.war:/WEB-INF/conf/portal/portal-configuration.xml</filename> file.
 		</para>
 		
 <programlisting role="XML"><![CDATA[<component>
@@ -171,7 +171,7 @@ Each portal, groups and users navigation is indicated by a configuration paragra
 			<area coords="13" id="area-Reference_Guide.Portalconf.templateLocation" />
 			<area coords="16" id="area-Reference_Guide.Portalconf.importMode" />
 			</areaspec>
-<programlisting role="XML"><![CDATA[<object-param>
+<programlisting language="xml"><![CDATA[<object-param>
    <name>portal.configuration</name>
    <description>description</description>
    <object type="org.exoplatform.portal.config.NewPortalConfig">
@@ -259,10 +259,10 @@ For example, with the above configuration, the portal will look for all configur
 	<section id="sect-Reference_Guide-Portal_Navigation_Configuration-Portal_Navigation">
 		<title>Portal Navigation</title>
 		<para>
-		The portal navigation incorporates the pages that can be accessed even when the user is not logged in assuming the applicable permissions allow the public access). For example, several portal navigations are used when a company owns multiple trademarks, and sets up a website for each of them.
+		The portal navigation incorporates the pages that can be accessed even when the user is not logged in (assuming the applicable permissions allow the public access). For example, several portal navigations are used when a company owns multiple trademarks, and sets up a website for each of them.
 		</para>
 		<para>
-			The <emphasis role="bold">classic</emphasis> portal is configured by four XML files in the <filename>02portal.war:/WEB-INF/conf/portal/portal/classic</filename> directory:
+			The <emphasis role="bold">classic</emphasis> portal is configured by four XML files in the <filename>portal.war:/WEB-INF/conf/portal/portal/classic</filename> directory:
 		</para>
 		<variablelist>
 			<varlistentry>
@@ -345,9 +345,6 @@ For example, with the above configuration, the portal will look for all configur
 </programlisting>
 					<para>
 						It is also possible to apply a nested container that can also contain portlets. Row, column or tab containers are then responsible for the layout of their child portlets.
-					</para>
-					<para>
-						Each application references a portlet using the id: <literal>portal#{portalName}:/{portletWarName}/{portletName}/{uniqueId}</literal>.
 					</para>
 					<para>
 						Use the <literal>page-body</literal> tag to define where &PRODUCT; should render the current page.
@@ -464,7 +461,7 @@ For example, with the above configuration, the portal will look for all configur
 			Group navigations are dynamically added to the user navigation at login. This allows users to see the menu of all pages assigned to any groups they belong to.
 		</para>
 		<para>
-			The group navigation menu is configured by three XML files (<filename>navigation.xml</filename>, <filename>pages.xml</filename> and <filename>portlet-preferences.xml</filename>). The syntax used in these files is the same as those covered in <xref linkend="sect-Reference_Guide-Portal_Navigation_Configuration-Portal_Navigation" />.
+			The group navigation menu is configured by two XML files (<filename>navigation.xml</filename> and <filename>pages.xml</filename>). The syntax used in these files is the same as those covered in <xref linkend="sect-Reference_Guide-Portal_Navigation_Configuration-Portal_Navigation" />.
 		</para>
 		<para>
 			They are also located in the <filename>{templateLocation}/{ownerType}/{predefinedOwner}</filename> directory where <literal>ownerType</literal> is <literal>group</literal> and <literal>predefinedOwner</literal> is the path to the group. For example, <filename>portal.war/WEB-INF/conf/portal/group/platform/administrators/</filename>.
@@ -477,7 +474,7 @@ For example, with the above configuration, the portal will look for all configur
 			User navigation is a set of nodes and pages that are owned by the user. They are part of the user's dashboard.
 		</para>
 		<para>
-			Three files configure the user navigation (<filename>navigation.xml</filename>, <filename>pages.xml</filename> and <filename>portlet-preferences.xml</filename>). They are located in the <filename>{templateLocation}/{ownerType}/{predefinedOwner}</filename> directory where <literal>ownerType</literal> is <literal>user</literal> and <literal>predefinedOwner</literal> is name of user who wants to create the navigation. For example, if the administrator wants to create navigation for the user named <literal>root</literal>, he has to locate the configuration files in <filename>portal.war/WEB-INF/conf/portal/user/root</filename>.
+			Two files configure the user navigation (<filename>navigation.xml</filename> and <filename>pages.xml</filename>). They are located in the <filename>{templateLocation}/{ownerType}/{predefinedOwner}</filename> directory where <literal>ownerType</literal> is <literal>user</literal> and <literal>predefinedOwner</literal> is name of user who wants to create the navigation. For example, if the administrator wants to create navigation for the user named <literal>root</literal>, he has to locate the configuration files in <filename>portal.war/WEB-INF/conf/portal/user/root</filename>.
 		</para>
 	</section>
 </section>

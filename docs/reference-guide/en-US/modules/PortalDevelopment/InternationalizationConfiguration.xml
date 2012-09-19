@@ -64,7 +64,7 @@ NavigationPortlet_ar.xml
 			Various languages are available in the portal package. The configuration below will define which languages shown in the &#34;Change Language&#34; section and made available to users.
 		</para>
 		<para>
-			The <filename>02portal.war:/WEB-INF/conf/common/common-configuration.xml</filename> file of your installation contains the following section:
+			The <filename>portal.war:/WEB-INF/conf/common/common-configuration.xml</filename> file of your installation contains the following section:
 		</para>
 		
 <programlisting role="XML">&#60;component&#62;
@@ -79,7 +79,7 @@ NavigationPortlet_ar.xml
 &#60;/component&#62;
 </programlisting>
 		<para>
-			This configuration points to the locale configuration file (<filename>02portal.war:/WEB-INF/conf/common/locales-config.xml</filename>) which contains the following code:
+			This configuration points to the locale configuration file (<filename>portal.war:/WEB-INF/conf/common/locales-config.xml</filename>) which contains the following code:
 		</para>
 		<programlistingco>
 			<areaspec>
@@ -89,7 +89,7 @@ NavigationPortlet_ar.xml
 				<area coords="7" id="area-Reference_Guide-i18n.locales.configuration.description" />
 				<area coords="22" id="area-Reference_Guide-i18n.locales.configuration.orientation" />
 			</areaspec>
-<programlisting role="XML">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;
+<programlisting language="xml">&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;
 &#60;locales-config&#62;
   &#60;locale-config&#62;
     &#60;locale&#62;en&#60;/locale&#62;
@@ -147,7 +147,7 @@ NavigationPortlet_ar.xml
 	<section id="sect-Reference_Guide-Internationalization_Configuration-ResourceBundleService">
 		<title>ResourceBundleService</title>
 		<para>
-			The resource bundle service is configured in <filename>02portal.war:/WEB-INF/conf/common/common-configuration.xml</filename>.
+			The resource bundle service is configured in <filename>portal.war:/WEB-INF/conf/common/common-configuration.xml</filename>.
 		</para>
 		<programlistingco>
 			<areaspec>
@@ -155,7 +155,7 @@ NavigationPortlet_ar.xml
 				<area coords="11" id="area-Reference_Guide-i18n.rb.service.init_resources" />
 				<area coords="24" id="area-Reference_Guide-i18n.rb.service.portal_resource_names" />
 			</areaspec>
-<programlisting role="XML">&#60;component&#62;
+<programlisting language="xml">&#60;component&#62;
   &#60;key&#62;org.exoplatform.services.resources.ResourceBundleService&#60;/key&#62;
   &#60;type&#62;org.exoplatform.services.resources.impl.SimpleResourceBundleService&#60;/type&#62;
   &#60;init-params&#62;
@@ -316,13 +316,13 @@ organization.management=Management
         <para>When choosing a language as on the screenshot above, the user is presented with a list of languages on the left side in the current chosen language
         and on the right side, the same language translated into its own language. 
         Those texts are obtained from the JDK API <literal>java.util.Locale.getDisplayedLanguage()</literal> and <literal>java.util.Locale.getDisplayedCountry()</literal> (if needed) and all languages may not be translated and can also depend on the JVM currently used.
-        It is still possible to override those values by editing the <literal>locale.portal.webui</literal> resource bundle, to do so edit the <filename>gatein.ear/02portal.war/WEB-INF/classes/locale/portal/webui_xx_yy.properties</filename> file where <emphasis>xx_yy</emphasis>
+        It is still possible to override those values by editing the <literal>locale.portal.webui</literal> resource bundle, to do so edit the <filename>gatein.ear/portal.war/WEB-INF/classes/locale/portal/webui_xx_yy.properties</filename> file where <emphasis>xx_yy</emphasis>
         represents the country code of the language in which you want to translate a particular language.
         In that file, add or modify a key such as <literal>Locale.xx_yy</literal> with the value being the translated string.
         </para>
         <example>
            <title>Changing the displayed text for Traditional Chinese in French</title>
-           <para>First, edit <filename>gatein.ear/02portal.war/WEB-INF/classes/locale/portal/webui_fr.properties</filename> where <emphasis>ne</emphasis> is the country code for French, and add
+           <para>First, edit <filename>gatein.ear/portal.war/WEB-INF/classes/locale/portal/webui_fr.properties</filename> where <emphasis>ne</emphasis> is the country code for French, and add
            the following key into it:
 <programlisting>
 Locale.zh_TW=Chinois traditionnel
