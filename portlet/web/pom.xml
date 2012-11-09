@@ -59,7 +59,8 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+			</plugin>
+			<!--
       <plugin>
         <groupId>org.gatein.less</groupId>
         <artifactId>less-maven-plugin</artifactId>
@@ -83,7 +84,29 @@
             </module>
           </modules>
         </configuration>
-      </plugin>
+			</plugin>
+			-->
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.3.0</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/webapp/skin/portal/webui/LESS_component</sourceDirectory>
+					<outputDirectory>${project.build.directory}/${project.build.finalName}/skin/portal/webui/LESS_component</outputDirectory>
+					<compress>false</compress>
+					<includes>
+						<include>UINavigationPortlet/DefaultStylesheet.less</include>
+						<include>UISiteMap/DefaultStylesheet.less</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
     </plugins>
   </build>
 </project>
