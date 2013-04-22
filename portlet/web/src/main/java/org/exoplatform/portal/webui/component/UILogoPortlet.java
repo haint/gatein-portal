@@ -21,6 +21,7 @@ package org.exoplatform.portal.webui.component;
 
 import javax.portlet.PortletPreferences;
 
+import org.exoplatform.commons.utils.HTMLEntityEncoder;
 import org.exoplatform.portal.application.PortalRequestContext;
 import org.exoplatform.portal.mop.SiteType;
 import org.exoplatform.portal.mop.user.UserNavigation;
@@ -63,7 +64,7 @@ public class UILogoPortlet extends UIPortletApplication {
         } else if (nav.getKey().getType().equals(SiteType.USER)) {
             ConversationState state = ConversationState.getCurrent();
             User user = (User) state.getAttribute(CacheUserProfileFilter.USER_PROFILE);
-            return user.getFullName();
+            return HTMLEntityEncoder.getInstance().encode(user.getFullName());
         }
         return "";
     }
