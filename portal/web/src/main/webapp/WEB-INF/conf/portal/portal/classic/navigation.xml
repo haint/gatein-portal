@@ -166,5 +166,11 @@
 	      <page-ref>portal::classic::register</page-ref>
     	</node>
     </node>
+    <node>
+      <name>people</name>
+      <display-name>People</display-name>
+      <visibility>SYSTEM</visibility>
+      <page-ref>portal::classic::people</page-ref>
+    </node>
   </node>
 </navigation>

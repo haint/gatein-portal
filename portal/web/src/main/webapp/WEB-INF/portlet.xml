@@ -50,4 +50,16 @@
       <short-title>Register</short-title>
     </portlet-info>
   </portlet>
+  <portlet>
+    <portlet-name>PeoplePortlet</portlet-name>
+    <portlet-class>org.gatein.portal.ui.people.PeoplePortlet</portlet-class>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>view</portlet-mode>
+    </supports>
+    <portlet-info>
+      <title>People Portlet</title>
+      <short-title>People</short-title>
+    </portlet-info>
+  </portlet>
 </portlet-app>

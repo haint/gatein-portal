@@ -122,4 +122,20 @@
       </portlet>
     </zone>
   </page>
+  
+  <page>
+    <name>people</name>
+    <display-name>People</display-name>
+    <access-permission>Everyone</access-permission>
+    <edit-permission>*:/platform/administrators</edit-permission>
+    <zone>
+      <id>1</id>
+      <portlet>
+        <name>people</name>
+        <access-permission>Everyone</access-permission>
+        <application-ref>portal</application-ref>
+        <portlet-ref>PeoplePortlet</portlet-ref>
+      </portlet>
+    </zone>
+  </page>
 </page-set>
