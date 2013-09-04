@@ -68,4 +68,16 @@ public class ClasspathResourceResolver extends ResourceResolver {
         return "classpath:";
     }
 
+    @Override
+    protected String removeScheme(String url) {
+        String scheme = getResourceScheme();
+        if (url.startsWith(scheme)) {
+            url = url.substring(scheme.length());
+        }
+        if (url.startsWith("/")) {
+            url = url.substring(1);
+        }
+        return url;
+    }
+
 }
