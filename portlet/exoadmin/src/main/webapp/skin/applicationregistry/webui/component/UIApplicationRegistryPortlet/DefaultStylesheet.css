@@ -406,8 +406,9 @@
 	width: 99%;
 }
 
-.UIOrganizerManagement .UIFormInputSet .UIFormGrid {
-	width: 99%;
+.UIFormGrid td.require{
+	text-align: right; /* orientation=lt */
+	text-align: left; /* orientation=rt */
 }
 
 .UIOrganizerManagement .UIFormInputSet .PublicCheck .UIFormGrid {
