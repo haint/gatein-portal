@@ -351,23 +351,34 @@ public class UIPageBrowser extends UIContainer {
             UIPortalApplication uiApp = (UIPortalApplication) prContext.getUIApplication();
             UIMaskWorkspace uiMaskWS = uiApp.getChildById(UIPortalApplication.UI_MASK_WS_ID);
             UIPageForm uiPageForm = uiMaskWS.createUIComponent(UIPageForm.class, "UIBrowserPageForm", "UIPageForm");
-            uiPageForm.buildForm(null);
-            uiMaskWS.setUIComponent(uiPageForm);
-            uiMaskWS.setShow(true);
 
-            UIFormSelectBox slcOwnerType = uiPageForm.getUIFormSelectBox(UIPageForm.OWNER_TYPE);
-            List<SelectItemOption<String>> types = slcOwnerType.getOptions();
-            for (int i = 0; i < types.size(); i++) {
-                if (PortalConfig.USER_TYPE.equals(types.get(i).getValue())) {
-                    types.remove(types.get(i));
-                    break;
+            checker : {
+                String currentUser = prContext.getRemoteUser();
+                if (currentUser == null) break checker;
+
+                uiPageForm.buildForm(null);
+                uiMaskWS.setUIComponent(uiPageForm);
+                uiMaskWS.setShow(true);
+
+                UIFormSelectBox slcOwnerType = uiPageForm.getUIFormSelectBox(UIPageForm.OWNER_TYPE);
+                List<SelectItemOption<String>> types = slcOwnerType.getOptions();
+                for (int i = 0; i < types.size(); i++) {
+                    if (PortalConfig.USER_TYPE.equals(types.get(i).getValue())) {
+                        types.remove(types.get(i));
+                        break;
+                    }
                 }
-            }
-            slcOwnerType.setOptions(types);
-            Event<UIComponent> slcEvent = uiPageForm.createEvent("ChangeOwnerType", Phase.DECODE, event.getRequestContext());
-            slcEvent.broadcast();
+                if (types.isEmpty()) break checker;
 
-            prContext.addUIComponentToUpdateByAjax(uiMaskWS);
+                slcOwnerType.setOptions(types);
+                Event<UIComponent> slcEvent = uiPageForm.createEvent("ChangeOwnerType", Phase.DECODE, event.getRequestContext());
+                slcEvent.broadcast();
+
+                prContext.addUIComponentToUpdateByAjax(uiMaskWS);
+            }
+            WebuiRequestContext context = WebuiRequestContext.getCurrentInstance();
+            context.getUIApplication().addMessage(new ApplicationMessage("UIPortalManagement.msg.Invalid-CreatePage-Permission", null));
+            return;
         }
     }
 
